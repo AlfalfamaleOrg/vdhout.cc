@@ -1,29 +1,24 @@
 # vdhout.cc
 
-Static landing page served from GitHub Pages on the apex domain `vdhout.cc`.
+Static landing page served from **Cloudflare Pages** on the apex domain `vdhout.cc`.
+
+## Deploy
+
+```bash
+set -a; source ~/.cloudflare/keys; set +a
+export CLOUDFLARE_API_TOKEN="$CF_PAGES_TOKEN"
+export CLOUDFLARE_ACCOUNT_ID="$CF_ACCOUNT_ID"
+npx wrangler pages deploy . --project-name=vdhout-cc --branch=main --commit-dirty=true
+```
+
+Pushen naar `main` triggert geen auto-deploy (geen Git-koppeling). Voor auto-deploy: in CF dashboard onder Pages → vdhout-cc → Settings → Builds & deployments → koppel de GitHub repo.
 
 ## DNS
 
-Point the apex domain at GitHub Pages with these `A` records (IPv4) and the matching `AAAA` records (IPv6):
-
-```
-A    185.199.108.153
-A    185.199.109.153
-A    185.199.110.153
-A    185.199.111.153
-
-AAAA 2606:50c0:8000::153
-AAAA 2606:50c0:8001::153
-AAAA 2606:50c0:8002::153
-AAAA 2606:50c0:8003::153
-```
-
-(Optional) For `www.vdhout.cc`, add a `CNAME` record pointing at `alfalfamaleorg.github.io.`.
+Apex `vdhout.cc` is een proxied CNAME naar `vdhout-cc.pages.dev` (Cloudflare CNAME flattening). Geen handmatige A-records nodig.
 
 ## Local preview
 
-Open `index.html` in a browser, or:
-
-```
+```bash
 python3 -m http.server 8000
 ```
