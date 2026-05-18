@@ -144,6 +144,34 @@
 
   .lede em { color: var(--accent); font-style: normal; }
 
+  .links {
+    display: inline-flex;
+    gap: clamp(1.25rem, 3vw, 2.5rem);
+    justify-self: center;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .links a {
+    color: var(--paper);
+    text-decoration: none;
+    position: relative;
+    padding-bottom: 0.25rem;
+    transition: color 180ms ease;
+  }
+  .links a::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.35;
+    transition: opacity 180ms ease, background-color 180ms ease;
+  }
+  .links a:hover { color: var(--accent); }
+  .links a:hover::after { opacity: 1; background: var(--accent); }
+
   .meta {
     display: inline-flex;
     gap: 1.5rem;
@@ -181,6 +209,10 @@
       <div class="eyebrow">— index —</div>
       <h1>vdhout<span class="tld">.cc</span><span class="cursor"></span></h1>
       <p class="lede">A quiet corner of the internet. <em>Something will live here.</em> For now: a placeholder, lovingly hand-set.</p>
+      <nav class="links" aria-label="index">
+        <a href="https://geografie.vdhout.cc">geografie</a>
+        <a href="https://route.vdhout.cc">route</a>
+      </nav>
       <div class="meta">
         <span><i></i>signal: holding</span>
         <span><i></i>contents: tbd</span>
@@ -191,7 +223,7 @@
 
   <footer>
     <div class="mark">© rob van den hout</div>
-    <div class="right">hosted on github pages</div>
+    <div class="right">hosted on cloudflare pages</div>
   </footer>
 </body>
 </html>
