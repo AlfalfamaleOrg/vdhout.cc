@@ -1,0 +1,11 @@
+name = "vdhout-cc"
+compatibility_date = "2026-05-18"
+
+# Static-only Worker: no server script, just the landing page in this directory.
+# The vdhout.cc custom domain is attached to this Worker via the account-level
+# Workers Domains API (not a [[routes]] entry), so deploys only update content.
+[assets]
+directory = "."
+
+workers_dev = false
+preview_urls = false
